@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Színátmenet Generátor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>CSS Színátmenet Generátor</h1>
+    </header>
+
+    <main>
+        <div class="generator">
+            <div class="gradient-type">
+                <button class="type-btn active" data-type="linear">Lineáris</button>
+                <button class="type-btn" data-type="radial">Sugaras</button>
+                <div class="direction-controls">
+                    <input type="range" id="angleSlider" min="0" max="360" value="47" class="angle-slider">
+                    <span class="angle-display">45°</span>
+                </div>
+            </div>
+
+            <div class="test-controls">
+                <h3>Teszt a weboldalon:</h3>
+                <div class="test-checkboxes">
+                    <label>
+                        <input type="checkbox" id="applyToHeader"> Alkalmazás a fejlécre
+                    </label>
+                    <label>
+                        <input type="checkbox" id="applyToBackground"> Alkalmazás a háttérre
+                    </label>
+                </div>
+            </div>
+
+            <div class="gradient-slider-container">
+                <div class="gradient-slider" id="gradientSlider">
+                    <div class="color-stop" data-position="0" data-color="#30A3D1" style="left: 0%">
+                        <div class="stop-handle" style="background-color: #3330d1;"></div>
+                    </div>
+                    <div class="color-stop" data-position="47" data-color="#5B57C7" style="left: 47%">
+                        <div class="stop-handle" style="background-color: #5B57C7;"></div>
+                    </div>
+                    <div class="color-stop" data-position="100" data-color="#EDDD53" style="left: 100%">
+                        <div class="stop-handle" style="background-color: #EDDD53;"></div>
+                    </div>
+                </div>
+                <div class="slider-track"></div>
+            </div>
+
+            <div class="main-content">
+                <div class="color-picker-panel">
+                    <div class="picker-section">
+                        <h3>VÁLASZTÓ</h3>
+                        <div class="color-picker-area">
+                            <canvas id="colorCanvas" width="200" height="150"></canvas>
+                            <div class="picker-cursor" id="pickerCursor"></div>
+                        </div>
+                        <div class="hue-slider-container">
+                            <input type="range" id="hueSlider" min="0" max="360" value="200" class="hue-slider">
+                        </div>
+                    </div>
+
+                    <div class="hex-section">
+                        <h3>HEX</h3>
+                        <input type="text" id="hexInput" value="#30A3D1" class="hex-input">
+                        <div class="rgba-inputs">
+                            <div class="rgba-row">
+                                <span>R</span><span>G</span><span>B</span><span>A</span>
+                            </div>
+                            <div class="rgba-row">
+                                <input type="number" id="rInput" value="48" min="0" max="255">
+                                <input type="number" id="gInput" value="163" min="0" max="255">
+                                <input type="number" id="bInput" value="209" min="0" max="255">
+                                <input type="number" id="aInput" value="100" min="0" max="100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stops-section">
+                        <h3>PONTOK</h3>
+                        <div class="stops-list" id="stopsList">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-area">
+                    <div class="gradient-preview" id="gradientPreview"></div>
+                </div>
+            </div>
+
+            <div class="css-output-section">
+                <div class="css-header">
+                    <h3>CSS</h3>
+                </div>
+                <div class="css-code" id="cssCode">
+                    <div class="css-line"><span class="line-number">1</span>background: #30a3d1;</div>
+                    <div class="css-line"><span class="line-number">2</span>background: linear-gradient(47deg, #30A3D1 0%, #5B57C7 47%, #EDDD53 100%);</div>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard()">Másolás a vágólapra</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Készítette: Tóth Dávid | 2025</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
